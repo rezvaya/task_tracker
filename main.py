@@ -47,7 +47,9 @@ while True:
             print(task.show_task())
 
     elif user_choice == '2':
-        print("2")
+        title = input("Введите название новой задачи: ")
+        tasks.append(Task(title, False))
+        print("Задача создана!")
         
     elif user_choice == '3':
         for i, task in enumerate(tasks):
