@@ -1,4 +1,4 @@
-from task import Task
+from task import Task, StudyTask
 
 def read_tasks_from_file(file_name):
     tasks = []
@@ -14,14 +14,16 @@ def read_tasks_from_file(file_name):
             current_task[1] = True
         else:
             current_task[1] = False
-
-        tasks_list.append(Task(current_task[0], current_task[1]))
+        if len(current_task) == 3:
+            tasks_list.append(StudyTask(current_task[0], current_task[1], current_task[2]))
+        else:
+            tasks_list.append(Task(current_task[0], current_task[1]))
 
     return tasks_list
 
 
 def save_tasks_in_file(tasks, file_name):
-    with open(file_name, 'w') as file:
+    with open(file_name, 'w', encoding='utf-8') as file:
         for task in tasks:
             file.write(f"{task.str_to_file()}\n")
 
@@ -47,8 +49,17 @@ while True:
             print(task.show_task())
 
     elif user_choice == '2':
+        print("Укажите тип задачи: ")
+        print("1. Обычная")
+        print("2. Учебная")
+        task_type = input()
         title = input("Введите название новой задачи: ")
-        tasks.append(Task(title, False))
+        if task_type == '1':
+            tasks.append(Task(title, False))
+        else:
+            deadline = input("Введите дедлайн в формате dd.mm.yyyy: ")
+            tasks.append(StudyTask(title, False, deadline))
+
         print("Задача создана!")
         
     elif user_choice == '3':
