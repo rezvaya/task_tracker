@@ -1,5 +1,3 @@
-from custom_exep import IncorrectDeadlineFormat
-
 class Task:
     def __init__(self, title, status):
         self.title = title
