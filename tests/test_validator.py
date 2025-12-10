@@ -5,3 +5,4 @@ def test_data_format():
 
 def test_incorrect_data():
     assert not check_date_format("100.120.2025")
+    
