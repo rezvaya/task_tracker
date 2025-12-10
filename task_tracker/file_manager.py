@@ -1,6 +1,11 @@
 from models import Task, StudyTask
 
+
 def read_tasks_from_file(file_name):
+    '''
+    Функция, которая ...
+    Возвращает...
+    '''
     tasks = []
     tasks_list = []
     try:
@@ -20,7 +25,8 @@ def read_tasks_from_file(file_name):
         else:
             current_task[1] = False
         if len(current_task) == 3:
-            tasks_list.append(StudyTask(current_task[0], current_task[1], current_task[2]))
+            tasks_list.append(
+                StudyTask(current_task[0], current_task[1], current_task[2]))
         else:
             tasks_list.append(Task(current_task[0], current_task[1]))
 

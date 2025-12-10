@@ -1,8 +1,10 @@
 from validators import check_date_format, marked
-from file_manager import read_tasks_from_file, save_tasks_in_file
+from file_manager import save_tasks_in_file
 from models import Task, StudyTask
 
-### TO-DO: реализовать функцию для абстрактного интерфейса
+# TO-DO: реализовать функцию для абстрактного интерфейса
+
+
 def cli(filename, tasks):
     while True:
         print("Меню: ")
@@ -32,9 +34,9 @@ def cli(filename, tasks):
                     if check_date_format(deadline):
                         tasks.append(StudyTask(title, False, deadline))
                         print("Учебная задача создана!")
-                    else: 
+                    else:
                         print("Неверный формат ддл!")
-            
+
         elif user_choice == '3':
             for i, task in enumerate(tasks):
                 print(f"-----(# {i + 1}) {task.show_task()}")
@@ -43,7 +45,7 @@ def cli(filename, tasks):
                 marked(tasks, task_number)
             except IndexError:
                 print("Такой задачи не существует!")
-            except Exception as e:
+            except Exception:
                 print("Произошла ошибка! Попробуйте еще раз.")
 
         elif user_choice == '4':
